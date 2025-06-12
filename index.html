@@ -1,273 +1,676 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CrivixLabs × Macally | CRM Potenciador de Negocios</title>
-  <style>
-    :root {
-      --primary: #005bea;
-      --accent: #00c6fb;
-      --secondary: #6c757d;
-      --success: #28a745;
-      --light: #f9f9fb;
-      --dark: #1f1f1f;
-      --border: #e0e0e0;
-      --shadow: 0 6px 24px rgba(0,0,0,0.1);
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRM Todo-en-Uno - Gestión Inteligente de Clientes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    * {
-      box-sizing: border-box;
-    }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
 
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: var(--dark);
-      background: var(--light);
-    }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-    .hero {
-      background: linear-gradient(120deg, var(--primary), var(--accent));
-      color: white;
-      padding: 100px 20px 60px;
-      text-align: center;
-      box-shadow: var(--shadow);
-    }
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
 
-    .hero h1 {
-      font-size: 3rem;
-      margin-bottom: 15px;
-    }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
 
-    .hero p {
-      font-size: 1.2rem;
-      max-width: 700px;
-      margin: 0 auto 30px;
-    }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
 
-    .cta-button {
-      background: white;
-      color: var(--primary);
-      padding: 15px 35px;
-      font-weight: bold;
-      border-radius: 30px;
-      border: none;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
 
-    .cta-button:hover {
-      background: var(--accent);
-      color: white;
-      transform: scale(1.05);
-    }
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: slideInUp 1s ease-out;
+        }
 
-    .dashboard-preview {
-      max-width: 1100px;
-      margin: -40px auto 0;
-      background: white;
-      border-radius: 16px;
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: slideInUp 1s ease-out 0.2s both;
+        }
 
-    .dashboard-header {
-      background: var(--light);
-      padding: 20px;
-      font-weight: bold;
-      display: flex;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--border);
-    }
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideInUp 1s ease-out 0.4s both;
+        }
 
-    .dashboard-stats {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      padding: 20px;
-    }
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
 
-    .stat-card {
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      color: white;
-      border-radius: 12px;
-      padding: 20px;
-      text-align: center;
-    }
+        .btn-primary {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3);
+        }
 
-    .stat-card h3 {
-      font-size: 0.9rem;
-      margin-bottom: 8px;
-    }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(40, 167, 69, 0.4);
+        }
 
-    .stat-card .value {
-      font-size: 2rem;
-      font-weight: 700;
-    }
+        .btn-secondary {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.5);
+            backdrop-filter: blur(10px);
+        }
 
-    .dashboard-content {
-      display: flex;
-      gap: 20px;
-      padding: 20px;
-    }
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-3px);
+        }
 
-    .main-chart, .side-list {
-      flex: 1;
-      background: var(--light);
-      border-radius: 10px;
-      padding: 20px;
-    }
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-    .main-chart {
-      flex: 2;
-    }
+        /* Beneficios Section */
+        .benefits {
+            padding: 80px 0;
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+        }
 
-    .chart-placeholder {
-      height: 220px;
-      background: white;
-      border: 2px dashed var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--secondary);
-      font-weight: bold;
-      border-radius: 10px;
-      margin-top: 15px;
-    }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+        }
 
-    .features {
-      padding: 80px 20px;
-      text-align: center;
-      background: white;
-    }
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
 
-    .features h2 {
-      margin-bottom: 50px;
-      font-size: 2.5rem;
-    }
+        .benefit-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
 
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: all 0.5s ease;
+        }
 
-    .feature-card {
-      background: var(--light);
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: var(--shadow);
-      transition: transform 0.3s;
-    }
+        .benefit-card:hover::before {
+            left: 100%;
+        }
 
-    .feature-card:hover {
-      transform: translateY(-5px);
-    }
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
 
-    .feature-icon {
-      font-size: 3rem;
-      color: var(--primary);
-    }
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
 
-    .testimonials {
-      background: var(--accent);
-      padding: 80px 20px;
-      text-align: center;
-      color: white;
-    }
+        .benefit-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
 
-    .testimonial-card {
-      background: white;
-      color: var(--dark);
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: var(--shadow);
-      margin: 0 auto;
-      max-width: 700px;
-    }
+        .benefit-description {
+            color: #6c757d;
+            line-height: 1.6;
+        }
 
-    .final-cta {
-      background: var(--dark);
-      color: white;
-      text-align: center;
-      padding: 80px 20px;
-    }
+        /* Funcionalidades */
+        .features {
+            padding: 80px 0;
+            background: white;
+        }
 
-    .final-cta .cta-button {
-      margin-top: 20px;
-      background: var(--accent);
-      color: white;
-    }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
 
-    @media (max-width: 768px) {
-      .dashboard-stats {
-        grid-template-columns: 1fr 1fr;
-      }
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.5rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
 
-      .dashboard-content {
-        flex-direction: column;
-      }
-    }
-  </style>
+        .feature-item:hover {
+            background: #f8f9fa;
+            transform: translateX(10px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: #667eea;
+            flex-shrink: 0;
+        }
+
+        .feature-content h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+
+        .feature-content p {
+            color: #6c757d;
+            font-size: 0.95rem;
+        }
+
+        /* Casos de Uso */
+        .use-cases {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .use-case-card {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .use-case-card:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-5px);
+        }
+
+        .use-case-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .use-case-description {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* Testimonios */
+        .testimonials {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonial-quote {
+            font-size: 1.3rem;
+            font-style: italic;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .testimonial-company {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        /* CTA Final */
+        .final-cta {
+            padding: 80px 0;
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+            text-align: center;
+        }
+
+        .final-cta-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+
+        .final-cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-white {
+            background: white;
+            color: #28a745;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .btn-white:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: #ecf0f1;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #3498db;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: #34495e;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: #3498db;
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .final-cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
 </head>
 <body>
-  <section class="hero">
-    <h1>Potencia tu Gestión de Clientes con Nuestro CRM</h1>
-    <p>La solución todo-en-uno para firmas digitales, gestión documental y automatización de procesos.</p>
-    <button class="cta-button">Solicitar Demo Gratuita</button>
-  </section>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">CRM Macally</h1>
+                <p class="hero-subtitle">Gestión de Clientes, Documentos y más en un Solo Lugar. Organiza tu cartera de clientes, envía contratos por WhatsApp y controla vencimientos automáticamente. 100% seguro y personalizable.</p>
+                <div class="cta-buttons">
+                    <a href="https://wa.me/593995883715?text=Hola%2C%20quisiera%20agendar%20una%20cita%20para%20realizar%20una%20prueba%20de%20sus%20servicios.%20%C2%BFPodr%C3%ADan%20brindarme%20m%C3%A1s%20informaci%C3%B3n%3F
+"" class="btn btn-primary">🚀 Prueba Gratis por 14 Días</a>
+                    <a href="https://wa.me/593995883715?text=Hola%2C%20quisiera%20agendar%20una%20cita%20para%20realizar%20una%20prueba%20de%20sus%20servicios.%20%C2%BFPodr%C3%ADan%20brindarme%20m%C3%A1s%20informaci%C3%B3n%3F
+" class="btn btn-secondary">📅 Agenda una Demo</a>
+                </div>
+            </div>
+        </div>
+    </header>
 
-  <div class="dashboard-preview">
-    <div class="dashboard-header">
-      <div>Panel de Control CRM | CrivixLabs × Macally</div>
-      <div>Última actualización: Hoy</div>
-    </div>
-    <div class="dashboard-stats">
-      <div class="stat-card"><h3>Clientes Activos</h3><div class="value">3,124</div></div>
-      <div class="stat-card"><h3>Documentos Firmados</h3><div class="value">1,143</div></div>
-      <div class="stat-card"><h3>Alertas Resueltas</h3><div class="value">95%</div></div>
-      <div class="stat-card"><h3>Tiempo Ahorrado</h3><div class="value">15h/sem</div></div>
-    </div>
-    <div class="dashboard-content">
-      <div class="main-chart">
-        <h4>Actividad de Documentos</h4>
-        <div class="chart-placeholder">[Gráfico de Documentos por Estado]</div>
-      </div>
-      <div class="side-list">
-        <h4>Alertas Recientes</h4>
-        <div class="chart-placeholder">[Lista de Alertas]</div>
-      </div>
-    </div>
-  </div>
+    <!-- Beneficios -->
+    <section class="benefits">
+        <div class="container">
+            <h2 class="section-title">¿Por qué elegir nuestro CRM?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <span class="benefit-icon">🔐</span>
+                    <h3 class="benefit-title">Seguridad y Privacidad</h3>
+                    <p class="benefit-description">Cada cliente tiene su espacio aislado con encriptación de datos. Cumple con regulaciones sin esfuerzo.</p>
+                </div>
+                <div class="benefit-card">
+                    <span class="benefit-icon">📲</span>
+                    <h3 class="benefit-title">Integración con WhatsApp</h3>
+                    <p class="benefit-description">Envía documentos para firma directo al WhatsApp de tus clientes y recibe notificaciones en tiempo real.</p>
+                </div>
+                <div class="benefit-card">
+                    <span class="benefit-icon">⏰</span>
+                    <h3 class="benefit-title">Alertas Automáticas</h3>
+                    <p class="benefit-description">Olvídate de perder plazos: el sistema avisa antes de que venzan contratos o renovaciones.</p>
+                </div>
+                <div class="benefit-card">
+                    <span class="benefit-icon">📊</span>
+                    <h3 class="benefit-title">Dashboard Intuitivo</h3>
+                    <p class="benefit-description">Todo bajo control: visualiza el estado de documentos, clientes y tareas pendientes en un vistazo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <section class="features">
-    <h2>Todo lo que tu negocio necesita en un solo lugar</h2>
-    <div class="features-grid">
-      <div class="feature-card"><div class="feature-icon">🔒</div><h3>Seguridad Multi-nivel</h3><p>Encriptación, aislamiento y auditoría detallada.</p></div>
-      <div class="feature-card"><div class="feature-icon">📱</div><h3>Integración WhatsApp</h3><p>Envía documentos para firma desde WhatsApp.</p></div>
-      <div class="feature-card"><div class="feature-icon">⏰</div><h3>Alertas Inteligentes</h3><p>Recordatorios automáticos y eficientes.</p></div>
-      <div class="feature-card"><div class="feature-icon">📊</div><h3>Reportes Dinámicos</h3><p>Estadísticas y análisis en tiempo real.</p></div>
-      <div class="feature-card"><div class="feature-icon">🤖</div><h3>Automatización</h3><p>Flujos de trabajo automáticos.</p></div>
-      <div class="feature-card"><div class="feature-icon">🔄</div><h3>Actualización Instantánea</h3><p>Datos sincronizados al instante.</p></div>
-    </div>
-  </section>
+    <!-- Funcionalidades -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Funcionalidades Principales</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <span class="feature-icon">👥</span>
+                    <div class="feature-content">
+                        <h4>Gestión de Clientes</h4>
+                        <p>Carga manual o masiva desde Excel. Organiza toda tu cartera de forma inteligente.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">✍️</span>
+                    <div class="feature-content">
+                        <h4>Firma desde cualquier lugar</h4>
+                        <p>Integración con certificadoras homologadas para firmas válidas legalmente.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">📋</span>
+                    <div class="feature-content">
+                        <h4>Plantillas Inteligentes</h4>
+                        <p>Rellena documentos automáticamente. Contratos personalizados en segundos.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🔍</span>
+                    <div class="feature-content">
+                        <h4>Búsqueda Avanzada</h4>
+                        <p>Filtra por nombre, cédula, estado, fechas y más. Encuentra lo que necesitas al instante.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <section class="testimonials">
-    <div class="testimonial-card">
-      <h3>"El CRM de CrivixLabs transformó nuestra productividad"</h3>
-      <p>"Redujimos un 70% el tiempo de gestión de contratos y eliminamos los errores manuales. La integración con WhatsApp fue un punto clave para nuestra firma legal."</p>
-      <p><strong>— Juan Pérez, Estudio Legal XYZ</strong></p>
-    </div>
-  </section>
+    <!-- Casos de Uso -->
+    <section class="use-cases">
+        <div class="container">
+            <h2 class="section-title">Ideal para:</h2>
+            <div class="use-cases-grid">
+                <div class="use-case-card">
+                    <h3 class="use-case-title">⚖️ Estudios Jurídicos</h3>
+                    <p class="use-case-description">Gestión completa de contratos y firmas válidas. Automatiza procesos legales y mantén todo organizado.</p>
+                </div>
+                <div class="use-case-card">
+                    <h3 class="use-case-title">🏠 Inmobiliarias</h3>
+                    <p class="use-case-description">Control total de arrendamientos y documentación. Nunca pierdas una renovación importante.</p>
+                </div>
+                <div class="use-case-card">
+                    <h3 class="use-case-title">🏢 Empresas de Servicios</h3>
+                    <p class="use-case-description">Renovaciones automáticas y recordatorios inteligentes. Mantén la continuidad de tus servicios.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <section class="final-cta">
-    <h2>¿Listo para llevar tu gestión de clientes al siguiente nivel?</h2>
-    <p>Únete a más de 500 empresas que ya optimizan sus procesos con nuestro CRM.</p>
-    <button class="cta-button">Comenzar Ahora</button>
-    <button class="cta-button">Hablar con un Asesor</button>
-  </section>
+    <!-- Testimonios -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+            <div class="testimonial-card">
+                <p class="testimonial-quote">"El CRM redujo un 70% el tiempo de gestión de contratos en mi firma. Ahora puedo enfocarme en lo que realmente importa: mis clientes."</p>
+                <p class="testimonial-author">Juan Pérez</p>
+                <p class="testimonial-company">Estudio Legal XYZ</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="final-cta">
+        <div class="container">
+            <h2 class="final-cta-title">¿Listo para simplificar tu gestión de clientes?</h2>
+            <div class="final-cta-buttons">
+                <a href="https://wa.me/593995883715?text=Hola%2C%20quisiera%20agendar%20una%20cita%20para%20realizar%20una%20prueba%20de%20sus%20servicios.%20%C2%BFPodr%C3%ADan%20brindarme%20m%C3%A1s%20informaci%C3%B3n%3F
+" class="btn btn-white">🎯 Comenzar Ahora</a>
+                <a href="https://wa.me/593995883715?text=Hola%2C%20quisiera%20agendar%20una%20cita%20para%20realizar%20una%20prueba%20de%20sus%20servicios.%20%C2%BFPodr%C3%ADan%20brindarme%20m%C3%A1s%20informaci%C3%B3n%3F
+" class="btn btn-secondary">💬 Hablar con un Asesor</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Producto</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Funcionalidades</a></li>
+                        <li><a href="#">Precios</a></li>
+                        <li><a href="#">Integraciones</a></li>
+                        <li><a href="#">API</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Soporte</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Centro de Ayuda</a></li>
+                        <li><a href="#">Documentación</a></li>
+                        <li><a href="#">Contacto</a></li>
+                        <li><a href="#">Estado del Sistema</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Políticas de Privacidad</a></li>
+                        <li><a href="#">Términos de Servicio</a></li>
+                        <li><a href="#">Certificaciones</a></li>
+                        <li><a href="#">Cumplimiento</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Síguenos</h4>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon">📘</a>
+                        <a href="#" class="social-icon">🐦</a>
+                        <a href="#" class="social-icon">💼</a>
+                        <a href="#" class="social-icon">📧</a>
+                    </div>
+                </div>
+            </div>
+            <p>&copy; 2025 CRM Macally x CrivixLabs. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Animaciones y efectos interactivos
+        document.addEventListener('DOMContentLoaded', function() {
+            // Efecto de aparición gradual al hacer scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observar elementos para animación
+            const animateElements = document.querySelectorAll('.benefit-card, .feature-item, .use-case-card');
+            animateElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'all 0.6s ease';
+                observer.observe(el);
+            });
+
+            // Efectos de hover mejorados para botones
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(btn => {
+                btn.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px) scale(1.05)';
+                });
+                
+                btn.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // Efecto de partículas en el header
+            createParticles();
+        });
+
+        function createParticles() {
+            const header = document.querySelector('header');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.style.position = 'absolute';
+                particle.style.width = '2px';
+                particle.style.height = '2px';
+                particle.style.background = 'rgba(255,255,255,0.3)';
+                particle.style.borderRadius = '50%';
+                particle.style.pointerEvents = 'none';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animation = `float ${3 + Math.random() * 4}s ease-in-out infinite`;
+                particle.style.animationDelay = Math.random() * 2 + 's';
+                header.appendChild(particle);
+            }
+        }
+    </script>
 </body>
 </html>
