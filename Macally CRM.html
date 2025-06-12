@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CrivixLabs × Macally | CRM Potenciador de Negocios</title>
+  <style>
+    :root {
+      --primary: #005bea;
+      --accent: #00c6fb;
+      --secondary: #6c757d;
+      --success: #28a745;
+      --light: #f9f9fb;
+      --dark: #1f1f1f;
+      --border: #e0e0e0;
+      --shadow: 0 6px 24px rgba(0,0,0,0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--dark);
+      background: var(--light);
+    }
+
+    .hero {
+      background: linear-gradient(120deg, var(--primary), var(--accent));
+      color: white;
+      padding: 100px 20px 60px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 30px;
+    }
+
+    .cta-button {
+      background: white;
+      color: var(--primary);
+      padding: 15px 35px;
+      font-weight: bold;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .cta-button:hover {
+      background: var(--accent);
+      color: white;
+      transform: scale(1.05);
+    }
+
+    .dashboard-preview {
+      max-width: 1100px;
+      margin: -40px auto 0;
+      background: white;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .dashboard-header {
+      background: var(--light);
+      padding: 20px;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .dashboard-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .stat-card {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .stat-card h3 {
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+    }
+
+    .stat-card .value {
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    .dashboard-content {
+      display: flex;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .main-chart, .side-list {
+      flex: 1;
+      background: var(--light);
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    .main-chart {
+      flex: 2;
+    }
+
+    .chart-placeholder {
+      height: 220px;
+      background: white;
+      border: 2px dashed var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--secondary);
+      font-weight: bold;
+      border-radius: 10px;
+      margin-top: 15px;
+    }
+
+    .features {
+      padding: 80px 20px;
+      text-align: center;
+      background: white;
+    }
+
+    .features h2 {
+      margin-bottom: 50px;
+      font-size: 2.5rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .feature-card {
+      background: var(--light);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .feature-icon {
+      font-size: 3rem;
+      color: var(--primary);
+    }
+
+    .testimonials {
+      background: var(--accent);
+      padding: 80px 20px;
+      text-align: center;
+      color: white;
+    }
+
+    .testimonial-card {
+      background: white;
+      color: var(--dark);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      margin: 0 auto;
+      max-width: 700px;
+    }
+
+    .final-cta {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 80px 20px;
+    }
+
+    .final-cta .cta-button {
+      margin-top: 20px;
+      background: var(--accent);
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      .dashboard-stats {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .dashboard-content {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <h1>Potencia tu Gestión de Clientes con Nuestro CRM</h1>
+    <p>La solución todo-en-uno para firmas digitales, gestión documental y automatización de procesos.</p>
+    <button class="cta-button">Solicitar Demo Gratuita</button>
+  </section>
+
+  <div class="dashboard-preview">
+    <div class="dashboard-header">
+      <div>Panel de Control CRM | CrivixLabs × Macally</div>
+      <div>Última actualización: Hoy</div>
+    </div>
+    <div class="dashboard-stats">
+      <div class="stat-card"><h3>Clientes Activos</h3><div class="value">3,124</div></div>
+      <div class="stat-card"><h3>Documentos Firmados</h3><div class="value">1,143</div></div>
+      <div class="stat-card"><h3>Alertas Resueltas</h3><div class="value">95%</div></div>
+      <div class="stat-card"><h3>Tiempo Ahorrado</h3><div class="value">15h/sem</div></div>
+    </div>
+    <div class="dashboard-content">
+      <div class="main-chart">
+        <h4>Actividad de Documentos</h4>
+        <div class="chart-placeholder">[Gráfico de Documentos por Estado]</div>
+      </div>
+      <div class="side-list">
+        <h4>Alertas Recientes</h4>
+        <div class="chart-placeholder">[Lista de Alertas]</div>
+      </div>
+    </div>
+  </div>
+
+  <section class="features">
+    <h2>Todo lo que tu negocio necesita en un solo lugar</h2>
+    <div class="features-grid">
+      <div class="feature-card"><div class="feature-icon">🔒</div><h3>Seguridad Multi-nivel</h3><p>Encriptación, aislamiento y auditoría detallada.</p></div>
+      <div class="feature-card"><div class="feature-icon">📱</div><h3>Integración WhatsApp</h3><p>Envía documentos para firma desde WhatsApp.</p></div>
+      <div class="feature-card"><div class="feature-icon">⏰</div><h3>Alertas Inteligentes</h3><p>Recordatorios automáticos y eficientes.</p></div>
+      <div class="feature-card"><div class="feature-icon">📊</div><h3>Reportes Dinámicos</h3><p>Estadísticas y análisis en tiempo real.</p></div>
+      <div class="feature-card"><div class="feature-icon">🤖</div><h3>Automatización</h3><p>Flujos de trabajo automáticos.</p></div>
+      <div class="feature-card"><div class="feature-icon">🔄</div><h3>Actualización Instantánea</h3><p>Datos sincronizados al instante.</p></div>
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <div class="testimonial-card">
+      <h3>"El CRM de CrivixLabs transformó nuestra productividad"</h3>
+      <p>"Redujimos un 70% el tiempo de gestión de contratos y eliminamos los errores manuales. La integración con WhatsApp fue un punto clave para nuestra firma legal."</p>
+      <p><strong>— Juan Pérez, Estudio Legal XYZ</strong></p>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <h2>¿Listo para llevar tu gestión de clientes al siguiente nivel?</h2>
+    <p>Únete a más de 500 empresas que ya optimizan sus procesos con nuestro CRM.</p>
+    <button class="cta-button">Comenzar Ahora</button>
+    <button class="cta-button">Hablar con un Asesor</button>
+  </section>
+</body>
+</html>
