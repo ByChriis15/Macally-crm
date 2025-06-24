@@ -35,8 +35,8 @@
 
         .main-container {
             position: relative;
-            width: 900px;
-            height: 200px;
+            width: min(900px, 90vw);
+            height: clamp(150px, 25vh, 200px);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -62,7 +62,7 @@
         }
 
         .letter-m-with-star {
-            font-size: 120px;
+            font-size: clamp(60px, 15vw, 120px);
             font-weight: 900;
             color: #2d3748;
             display: block;
@@ -72,11 +72,11 @@
         /* Estrella */
         .integrated-star {
             position: absolute;
-            top: -45px;
+            top: clamp(-25px, -4vw, -45px);
             left: 50%;
             transform: translateX(-50%) rotate(0deg) scale(0) translateY(-20px);
-            width: 30px;
-            height: 30px;
+            width: clamp(20px, 4vw, 30px);
+            height: clamp(20px, 4vw, 30px);
             opacity: 0;
             animation: starEntry 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.3s forwards,
                        starBling 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.8s forwards;
@@ -95,8 +95,8 @@
             position: absolute;
             top: -10px;
             left: -10px;
-            width: 60px;
-            height: 60px;
+            width: calc(100% + 20px);
+            height: calc(100% + 20px);
             background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.9) 50%, transparent 60%);
             transform: translateX(-100%) rotate(45deg);
             opacity: 0;
@@ -108,15 +108,15 @@
             position: absolute;
             display: flex;
             align-items: baseline;
-            transform: translateX(65px);
-            height: 120px;
+            transform: translateX(clamp(35px, 8vw, 65px));
+            height: clamp(60px, 15vw, 120px);
             opacity: 0;
             animation: fadeIn 0.1s ease-out 2s forwards,
                        fadeOut 0.5s ease-out 4s forwards;
         }
 
         .party-letter {
-            font-size: 120px;
+            font-size: clamp(60px, 15vw, 120px);
             font-weight: 900;
             color: #2d3748;
             opacity: 0;
@@ -143,7 +143,7 @@
             animation: logoReveal 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) 4.5s forwards,
                        logoToLanding 1s ease-in-out 6.5s forwards;
             z-index: 20;
-            max-width: 300px;
+            max-width: clamp(200px, 50vw, 300px);
             transition: all 1s ease-in-out;
         }
 
@@ -160,8 +160,9 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 2rem;
+            padding: clamp(1rem, 4vw, 2rem);
             text-align: center;
+            overflow-y: auto;
         }
 
         .landing-page.active {
@@ -170,39 +171,41 @@
         }
 
         .landing-logo {
-            width: 200px;
-            margin-bottom: 2rem;
+            width: clamp(120px, 30vw, 200px);
+            margin-bottom: clamp(1rem, 3vw, 2rem);
         }
 
         .landing-title {
-            font-size: 2.5rem;
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
             font-weight: 800;
             color: #1e293b;
-            margin-bottom: 1rem;
+            margin-bottom: clamp(0.5rem, 2vw, 1rem);
+            line-height: 1.2;
         }
 
         .landing-subtitle {
-            font-size: 1.2rem;
+            font-size: clamp(0.9rem, 3vw, 1.2rem);
             color: #64748b;
-            max-width: 600px;
-            margin-bottom: 2rem;
+            max-width: min(600px, 90vw);
+            margin-bottom: clamp(1.5rem, 4vw, 2rem);
             line-height: 1.6;
         }
 
         .cta-button {
-            padding: 15px 40px;
+            padding: clamp(12px, 3vw, 15px) clamp(25px, 6vw, 40px);
             background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
             color: white;
             border: none;
             border-radius: 30px;
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+            min-height: 48px; /* Mejor accesibilidad táctil */
         }
 
-        .cta-button:hover {
+        .cta-button:hover, .cta-button:active {
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
         }
@@ -232,7 +235,7 @@
         }
 
         @keyframes slideLeft {
-            to { transform: translateX(-200px) scale(1.1); }
+            to { transform: translateX(clamp(-100px, -25vw, -200px)) scale(1.1); }
         }
 
         @keyframes fadeOut {
@@ -295,11 +298,11 @@
             100% { opacity: 0; transform: scale(1.5); display: none; }
         }
 
-        /* Efectos de confeti */
+        /* Efectos de confeti - adaptados para móvil */
         .confetti {
             position: absolute;
-            width: 8px;
-            height: 8px;
+            width: clamp(6px, 1.5vw, 8px);
+            height: clamp(6px, 1.5vw, 8px);
             border-radius: 50%;
             opacity: 0;
         }
@@ -316,7 +319,7 @@
             100% { opacity: 0; transform: translateY(120px) rotate(360deg) scale(0.5); }
         }
 
-        /* Líneas de energía */
+        /* Líneas de energía - adaptadas para móvil */
         .energy-line {
             position: absolute;
             height: 2px;
@@ -325,9 +328,9 @@
             opacity: 0;
         }
 
-        .energy-line-1 { width: 100px; top: 40%; left: 10%; animation: energyFlow 1s ease-in-out 2.2s forwards; }
-        .energy-line-2 { width: 80px; top: 60%; right: 15%; animation: energyFlow 1.2s ease-in-out 2.8s forwards; }
-        .energy-line-3 { width: 120px; top: 30%; left: 70%; animation: energyFlow 0.9s ease-in-out 3.4s forwards; }
+        .energy-line-1 { width: clamp(60px, 15vw, 100px); top: 40%; left: 10%; animation: energyFlow 1s ease-in-out 2.2s forwards; }
+        .energy-line-2 { width: clamp(50px, 12vw, 80px); top: 60%; right: 15%; animation: energyFlow 1.2s ease-in-out 2.8s forwards; }
+        .energy-line-3 { width: clamp(70px, 18vw, 120px); top: 30%; left: 70%; animation: energyFlow 0.9s ease-in-out 3.4s forwards; }
 
         @keyframes energyFlow {
             0% { opacity: 0; transform: scaleX(0); }
@@ -335,19 +338,19 @@
             100% { opacity: 0; transform: scaleX(0); }
         }
 
-        /* Botón reinicio */
+        /* Botón reinicio - mejorado para móvil */
         .restart-btn {
             position: absolute;
-            bottom: 50px;
+            bottom: clamp(30px, 5vh, 50px);
             left: 50%;
             transform: translateX(-50%);
-            padding: 12px 32px;
+            padding: clamp(10px, 2.5vw, 12px) clamp(24px, 6vw, 32px);
             background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
             border: none;
             color: white;
             font-family: 'Inter', sans-serif;
             font-weight: 600;
-            font-size: 14px;
+            font-size: clamp(12px, 3vw, 14px);
             cursor: pointer;
             border-radius: 25px;
             box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
@@ -355,15 +358,79 @@
             opacity: 0;
             animation: fadeInUp 0.8s ease-out 5s forwards;
             z-index: 30;
+            min-height: 44px; /* Mejor accesibilidad táctil */
         }
 
-        .restart-btn:hover {
+        .restart-btn:hover, .restart-btn:active {
             transform: translateX(-50%) translateY(-3px);
             box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
         }
 
         @keyframes fadeInUp {
             to { opacity: 1; }
+        }
+
+        /* Media queries para ajustes específicos */
+        @media (max-width: 480px) {
+            .main-container {
+                width: 95vw;
+                height: 20vh;
+            }
+            
+            .remaining-letters {
+                transform: translateX(25px);
+            }
+            
+            .landing-page {
+                padding: 1rem;
+                justify-content: flex-start;
+                padding-top: 20vh;
+            }
+            
+            .landing-title {
+                font-size: 1.8rem;
+            }
+            
+            .landing-subtitle {
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 320px) {
+            .letter-m-with-star,
+            .party-letter {
+                font-size: 50px;
+            }
+            
+            .remaining-letters {
+                transform: translateX(20px);
+                height: 50px;
+            }
+            
+            .integrated-star {
+                width: 18px;
+                height: 18px;
+                top: -20px;
+            }
+        }
+
+        /* Mejoras para pantallas táctiles */
+        @media (hover: none) and (pointer: coarse) {
+            .cta-button:active,
+            .restart-btn:active {
+                transform: scale(0.95);
+            }
+        }
+
+        /* Orientación horizontal en móviles */
+        @media (orientation: landscape) and (max-height: 500px) {
+            .landing-page {
+                padding-top: 5vh;
+            }
+            
+            .main-container {
+                height: 15vh;
+            }
         }
     </style>
 </head>
@@ -432,11 +499,34 @@
             document.body.style.background = '#ffffff';
         }, 6500);
 
-        // Vibración sutil en momentos clave
-        setTimeout(() => { if (navigator.vibrate) navigator.vibrate(50); }, 300);
-        setTimeout(() => { if (navigator.vibrate) navigator.vibrate([30, 20, 30]); }, 800);
-        setTimeout(() => { if (navigator.vibrate) navigator.vibrate(40); }, 1500);
-        setTimeout(() => { if (navigator.vibrate) navigator.vibrate(40); }, 4500);
+        // Vibración sutil en momentos clave (solo en dispositivos que lo soporten)
+        const addVibration = (delay, pattern) => {
+            setTimeout(() => { 
+                if (navigator.vibrate && 'ontouchstart' in window) {
+                    navigator.vibrate(pattern);
+                }
+            }, delay);
+        };
+
+        addVibration(300, 50);
+        addVibration(800, [30, 20, 30]);
+        addVibration(1500, 40);
+        addVibration(4500, 40);
+
+        // Prevenir zoom en doble tap
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function (event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+
+        // Mejorar rendimiento en móviles
+        if ('ontouchstart' in window) {
+            document.body.style.touchAction = 'manipulation';
+        }
     </script>
 </body>
 </html>
