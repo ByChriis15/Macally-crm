@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRM Todo-en-Uno - Gestión Inteligente de Clientes</title>
+    <title>Macally - Animación a Landing Page</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
@@ -12,665 +14,429 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header */
-        header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
-            position: relative;
+            height: 100vh;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #f1f5f9 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             overflow: hidden;
+            position: relative;
+            transition: background 0.5s ease;
         }
 
-        header::before {
-            content: '';
+        /* Contenedor principal de la animación */
+        .animation-container {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-            animation: float 20s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            animation: slideInUp 1s ease-out;
-        }
-
-        .hero-subtitle {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            animation: slideInUp 1s ease-out 0.2s both;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            animation: slideInUp 1s ease-out 0.4s both;
-        }
-
-        .btn {
-            padding: 15px 30px;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-primary {
-            background: linear-gradient(45deg, #28a745, #20c997);
-            color: white;
-            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(40, 167, 69, 0.4);
-        }
-
-        .btn-secondary {
-            background: rgba(255,255,255,0.2);
-            color: white;
-            border: 2px solid rgba(255,255,255,0.5);
-            backdrop-filter: blur(10px);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255,255,255,0.3);
-            transform: translateY(-3px);
-        }
-
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Beneficios Section */
-        .benefits {
-            padding: 80px 0;
-            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 3rem;
-            color: #2c3e50;
-        }
-
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem;
-            margin-top: 3rem;
-        }
-
-        .benefit-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .benefit-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transition: all 0.5s ease;
-        }
-
-        .benefit-card:hover::before {
-            left: 100%;
-        }
-
-        .benefit-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-        }
-
-        .benefit-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            display: block;
-        }
-
-        .benefit-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: #2c3e50;
-        }
-
-        .benefit-description {
-            color: #6c757d;
-            line-height: 1.6;
-        }
-
-        /* Funcionalidades */
-        .features {
-            padding: 80px 0;
-            background: white;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .feature-item {
             display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            padding: 1.5rem;
-            border-radius: 15px;
-            transition: all 0.3s ease;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
         }
 
-        .feature-item:hover {
-            background: #f8f9fa;
-            transform: translateX(10px);
-        }
-
-        .feature-icon {
-            font-size: 2rem;
-            color: #667eea;
-            flex-shrink: 0;
-        }
-
-        .feature-content h4 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: #2c3e50;
-        }
-
-        .feature-content p {
-            color: #6c757d;
-            font-size: 0.95rem;
-        }
-
-        /* Casos de Uso */
-        .use-cases {
-            padding: 80px 0;
-            background: linear-gradient(135deg, #e16db5 0%, #7c2dd6 100%);
-            color: white;
-        }
-
-        .use-cases-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .use-case-card {
-            background: rgba(255,255,255,0.1);
-            padding: 2rem;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: all 0.3s ease;
-        }
-
-        .use-case-card:hover {
-            background: rgba(255,255,255,0.15);
-            transform: translateY(-5px);
-        }
-
-        .use-case-title {
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .use-case-description {
-            opacity: 0.9;
-            line-height: 1.6;
-        }
-
-        /* Testimonios */
-        .testimonials {
-            padding: 80px 0;
-            background: #f8f9fa;
-        }
-
-        .testimonial-card {
-            background: white;
-            padding: 3rem;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            max-width: 600px;
-            margin: 0 auto;
+        .main-container {
             position: relative;
-        }
-
-        .testimonial-quote {
-            font-size: 1.3rem;
-            font-style: italic;
-            color: #2c3e50;
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-
-        .testimonial-author {
-            font-weight: 600;
-            color: #667eea;
-        }
-
-        .testimonial-company {
-            color: #6c757d;
-            font-size: 0.9rem;
-        }
-
-        /* CTA Final */
-        .final-cta {
-            padding: 80px 0;
-            background: linear-gradient(45deg, #7c2dd6 0%, #e16db5);
-            color: white;
-            text-align: center;
-        }
-
-        .final-cta-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-        }
-
-        .final-cta-buttons {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn-white {
-            background: white;
-            color: #28a745;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-        }
-
-        .btn-white:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
-        }
-
-        /* Footer */
-        footer {
-            background: #2c3e50;
-            color: white;
-            padding: 40px 0;
-            text-align: center;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h4 {
-            margin-bottom: 1rem;
-            color: #ecf0f1;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-links a {
-            color: #bdc3c7;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: #3498db;
-        }
-
-        .social-icons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 1rem;
-        }
-
-        .social-icon {
-            width: 40px;
-            height: 40px;
-            background: #34495e;
-            border-radius: 50%;
+            width: 900px;
+            height: 200px;
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+
+        /* Fase 1: M con estrella integrada */
+        .m-with-integrated-star {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: translateX(0) scale(1);
+            opacity: 0;
+            animation: mAppear 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0s forwards,
+                       slideLeft 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.5s forwards,
+                       fadeOut 0.5s ease-out 4s forwards;
+        }
+
+        /* Contenedor para la M */
+        .m-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .letter-m-with-star {
+            font-size: 120px;
+            font-weight: 900;
+            color: #2d3748;
+            display: block;
+            line-height: 1;
+        }
+
+        /* Estrella */
+        .integrated-star {
+            position: absolute;
+            top: -45px;
+            left: 50%;
+            transform: translateX(-50%) rotate(0deg) scale(0) translateY(-20px);
+            width: 30px;
+            height: 30px;
+            opacity: 0;
+            animation: starEntry 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.3s forwards,
+                       starBling 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.8s forwards;
+            filter: drop-shadow(0 0 5px rgba(139, 92, 246, 0.5));
+            z-index: 2;
+        }
+
+        .star-svg {
+            width: 100%;
+            height: 100%;
+            fill: #8b5cf6;
+        }
+
+        /* Destello estilo Apple */
+        .bling-flash {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.9) 50%, transparent 60%);
+            transform: translateX(-100%) rotate(45deg);
+            opacity: 0;
+            animation: blingFlash 0.6s ease-out 1.2s forwards;
+        }
+
+        /* Fase 3: Letras restantes */
+        .remaining-letters {
+            position: absolute;
+            display: flex;
+            align-items: baseline;
+            transform: translateX(65px);
+            height: 120px;
+            opacity: 0;
+            animation: fadeIn 0.1s ease-out 2s forwards,
+                       fadeOut 0.5s ease-out 4s forwards;
+        }
+
+        .party-letter {
+            font-size: 120px;
+            font-weight: 900;
+            color: #2d3748;
+            opacity: 0;
+            transform: translateY(150px) rotate(-20deg) scale(0.3);
+            position: relative;
+            overflow: hidden;
+            line-height: 1;
+            display: inline-block;
+        }
+
+        /* Animaciones individuales para cada letra */
+        .party-letter:nth-child(1) { animation: letterBounceA 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) 2s forwards; }
+        .party-letter:nth-child(2) { animation: letterZigZagC 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) 2.3s forwards; }
+        .party-letter:nth-child(3) { animation: letterBlurA2 1s ease-out 2.6s forwards; }
+        .party-letter:nth-child(4) { animation: letterRaveL1 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 2.9s forwards; }
+        .party-letter:nth-child(5) { animation: letterBounceL2 0.9s cubic-bezier(0.68, -0.55, 0.265, 1.55) 3.2s forwards; }
+        .party-letter:nth-child(6) { animation: letterSpinY 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 3.5s forwards; }
+
+        /* Logo final - versión imagen */
+        .final-logo {
+            position: absolute;
+            opacity: 0;
+            transform: scale(0.5);
+            animation: logoReveal 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) 4.5s forwards,
+                       logoToLanding 1s ease-in-out 6.5s forwards;
+            z-index: 20;
+            max-width: 300px;
+            transition: all 1s ease-in-out;
+        }
+
+        /* Landing Page (oculto inicialmente) */
+        .landing-page {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease-in-out;
+            z-index: 5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .landing-page.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .landing-logo {
+            width: 200px;
+            margin-bottom: 2rem;
+        }
+
+        .landing-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 1rem;
+        }
+
+        .landing-subtitle {
+            font-size: 1.2rem;
+            color: #64748b;
+            max-width: 600px;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
             color: white;
-            text-decoration: none;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
         }
 
-        .social-icon:hover {
-            background: #3498db;
+        .cta-button:hover {
             transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .final-cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
+        /* Keyframes para animaciones */
+        @keyframes mAppear {
+            0% { opacity: 0; transform: translateX(0) scale(0.8); }
+            100% { opacity: 1; transform: translateX(0) scale(1); }
+        }
+
+        @keyframes starEntry {
+            0% { opacity: 0; transform: translateX(-50%) rotate(-180deg) scale(0) translateY(-50px); }
+            50% { opacity: 0.8; transform: translateX(-50%) rotate(-90deg) scale(0.8) translateY(-10px); }
+            100% { opacity: 1; transform: translateX(-50%) rotate(0deg) scale(1) translateY(0px); }
+        }
+
+        @keyframes starBling {
+            0% { transform: translateX(-50%) rotate(0deg) scale(1) translateY(0px); opacity: 1; }
+            50% { transform: translateX(-50%) rotate(180deg) scale(1.3) translateY(-5px); filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.8)) drop-shadow(0 0 25px rgba(147, 51, 234, 0.6)); }
+            100% { transform: translateX(-50%) rotate(360deg) scale(1) translateY(0px); filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.7)); }
+        }
+
+        @keyframes blingFlash {
+            0% { transform: translateX(-100%) rotate(45deg); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateX(200%) rotate(45deg); opacity: 0; }
+        }
+
+        @keyframes slideLeft {
+            to { transform: translateX(-200px) scale(1.1); }
+        }
+
+        @keyframes fadeOut {
+            to { opacity: 0; }
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        @keyframes letterBounceA {
+            0% { opacity: 0; transform: translateY(150px) rotate(-20deg) scale(0.3); color: #ef4444; }
+            50% { opacity: 1; transform: translateY(-20px) rotate(10deg) scale(1.2); color: #f97316; }
+            100% { opacity: 1; transform: translateY(0) rotate(0deg) scale(1); color: #2d3748; }
+        }
+
+        @keyframes letterZigZagC {
+            0% { opacity: 0; transform: translateX(-50px) translateY(100px) rotate(45deg) scale(0.5); color: #06b6d4; }
+            25% { transform: translateX(30px) translateY(50px) rotate(-15deg) scale(0.8); color: #8b5cf6; }
+            50% { transform: translateX(-15px) translateY(20px) rotate(5deg) scale(1.1); color: #ec4899; }
+            100% { opacity: 1; transform: translateX(0) translateY(0) rotate(0deg) scale(1); color: #2d3748; }
+        }
+
+        @keyframes letterBlurA2 {
+            0% { opacity: 0; transform: translateY(80px) scale(0.6); filter: blur(20px); color: #10b981; }
+            50% { opacity: 0.8; filter: blur(5px); color: #059669; }
+            100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0px); color: #2d3748; }
+        }
+
+        @keyframes letterRaveL1 {
+            0% { opacity: 0; transform: translateY(120px) rotate(180deg) scale(0.2); color: #dc2626; text-shadow: 0 0 20px #dc2626; }
+            25% { color: #2563eb; text-shadow: 0 0 20px #2563eb; }
+            50% { color: #7c3aed; text-shadow: 0 0 20px #7c3aed; transform: translateY(20px) rotate(90deg) scale(1.3); }
+            75% { color: #059669; text-shadow: 0 0 20px #059669; }
+            100% { opacity: 1; transform: translateY(0) rotate(0deg) scale(1); color: #2d3748; text-shadow: none; }
+        }
+
+        @keyframes letterBounceL2 {
+            0% { opacity: 0; transform: translateY(200px) rotate(-45deg) scale(0.1); color: #f59e0b; }
+            30% { transform: translateY(-30px) rotate(15deg) scale(1.4); color: #d97706; }
+            60% { transform: translateY(10px) rotate(-5deg) scale(0.9); color: #92400e; }
+            100% { opacity: 1; transform: translateY(0) rotate(0deg) scale(1); color: #2d3748; }
+        }
+
+        @keyframes letterSpinY {
+            0% { opacity: 0; transform: translateY(100px) rotateY(180deg) scale(0.4); color: #be185d; }
+            33% { transform: translateY(30px) rotateY(60deg) scale(1.2); color: #c2410c; }
+            66% { transform: translateY(-10px) rotateY(-20deg) scale(1.1); color: #7c2d12; }
+            100% { opacity: 1; transform: translateY(0) rotateY(0deg) scale(1); color: #2d3748; }
+        }
+
+        @keyframes logoReveal {
+            0% { opacity: 0; transform: scale(0.5); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes logoToLanding {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0; transform: scale(1.5); }
+            100% { opacity: 0; transform: scale(1.5); display: none; }
+        }
+
+        /* Efectos de confeti */
+        .confetti {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            opacity: 0;
+        }
+
+        .confetti-1 { background: #ef4444; top: 20%; left: 20%; animation: confettiFall 2s ease-out 2.5s forwards; }
+        .confetti-2 { background: #3b82f6; top: 30%; right: 20%; animation: confettiFall 1.8s ease-out 3s forwards; }
+        .confetti-3 { background: #10b981; top: 60%; left: 80%; animation: confettiFall 2.2s ease-out 3.2s forwards; }
+        .confetti-4 { background: #f59e0b; top: 10%; left: 60%; animation: confettiFall 1.9s ease-out 3.5s forwards; }
+        .confetti-5 { background: #8b5cf6; top: 70%; left: 30%; animation: confettiFall 2.1s ease-out 2.8s forwards; }
+
+        @keyframes confettiFall {
+            0% { opacity: 1; transform: translateY(-20px) rotate(0deg) scale(0); }
+            50% { opacity: 1; transform: translateY(50px) rotate(180deg) scale(1.5); }
+            100% { opacity: 0; transform: translateY(120px) rotate(360deg) scale(0.5); }
+        }
+
+        /* Líneas de energía */
+        .energy-line {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #8b5cf6, transparent);
+            border-radius: 1px;
+            opacity: 0;
+        }
+
+        .energy-line-1 { width: 100px; top: 40%; left: 10%; animation: energyFlow 1s ease-in-out 2.2s forwards; }
+        .energy-line-2 { width: 80px; top: 60%; right: 15%; animation: energyFlow 1.2s ease-in-out 2.8s forwards; }
+        .energy-line-3 { width: 120px; top: 30%; left: 70%; animation: energyFlow 0.9s ease-in-out 3.4s forwards; }
+
+        @keyframes energyFlow {
+            0% { opacity: 0; transform: scaleX(0); }
+            50% { opacity: 1; transform: scaleX(1); }
+            100% { opacity: 0; transform: scaleX(0); }
+        }
+
+        /* Botón reinicio */
+        .restart-btn {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12px 32px;
+            background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+            border: none;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 25px;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 5s forwards;
+            z-index: 30;
+        }
+
+        .restart-btn:hover {
+            transform: translateX(-50%) translateY(-3px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+        }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">CRM Macally</h1>
-                <p class="hero-subtitle">Gestión de Clientes, Documentos y más en un Solo Lugar. Organiza tu cartera de clientes, envía contratos por WhatsApp y controla vencimientos automáticamente. 100% seguro y personalizable.</p>
-                <div class="cta-buttons">
-                    <a href="https://wa.me/593995883715?text=Hola%2C%20quisiera%20agendar%20una%20cita%20para%20realizar%20una%20prueba%20de%20sus%20servicios.%20%C2%BFPodr%C3%ADan%20brindarme%20m%C3%A1s%20informaci%C3%B3n%3F
-"" class="btn btn-primary">🚀 Prueba Gratis por 14 Días</a>
-                    <a href="https://wa.me/593995883715?text=Hola%2C%20quisiera%20agendar%20una%20cita%20para%20realizar%20una%20prueba%20de%20sus%20servicios.%20%C2%BFPodr%C3%ADan%20brindarme%20m%C3%A1s%20informaci%C3%B3n%3F
-" class="btn btn-secondary">📅 Agenda una Demo</a>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Beneficios -->
-    <section class="benefits">
-        <div class="container">
-            <h2 class="section-title">¿Por qué elegir nuestro CRM?</h2>
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <span class="benefit-icon">🔐</span>
-                    <h3 class="benefit-title">Seguridad y Privacidad</h3>
-                    <p class="benefit-description">Cada cliente tiene su espacio aislado con encriptación de datos. Cumple con regulaciones sin esfuerzo.</p>
-                </div>
-                <div class="benefit-card">
-                    <span class="benefit-icon">📲</span>
-                    <h3 class="benefit-title">Integración con WhatsApp</h3>
-                    <p class="benefit-description">Envía documentos para firma directo al WhatsApp de tus clientes y recibe notificaciones en tiempo real.</p>
-                </div>
-                <div class="benefit-card">
-                    <span class="benefit-icon">⏰</span>
-                    <h3 class="benefit-title">Alertas Automáticas</h3>
-                    <p class="benefit-description">Olvídate de perder plazos: el sistema avisa antes de que venzan contratos o renovaciones.</p>
-                </div>
-                <div class="benefit-card">
-                    <span class="benefit-icon">📊</span>
-                    <h3 class="benefit-title">Dashboard Intuitivo</h3>
-                    <p class="benefit-description">Todo bajo control: visualiza el estado de documentos, clientes y tareas pendientes en un vistazo.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Funcionalidades -->
-    <section class="features">
-        <div class="container">
-            <h2 class="section-title">Funcionalidades Principales</h2>
-            <div class="features-grid">
-                <div class="feature-item">
-                    <span class="feature-icon">👥</span>
-                    <div class="feature-content">
-                        <h4>Gestión de Clientes</h4>
-                        <p>Carga manual o masiva desde Excel. Organiza toda tu cartera de forma inteligente.</p>
-                    </div>
-                </div>
-                <div class="feature-item">
-                    <span class="feature-icon">✍️</span>
-                    <div class="feature-content">
-                        <h4>Firma desde cualquier lugar</h4>
-                        <p>Integración con certificadoras homologadas para firmas válidas legalmente.</p>
-                    </div>
-                </div>
-                <div class="feature-item">
-                    <span class="feature-icon">📋</span>
-                    <div class="feature-content">
-                        <h4>Plantillas Inteligentes</h4>
-                        <p>Rellena documentos automáticamente. Contratos personalizados en segundos.</p>
-                    </div>
-                </div>
-                <div class="feature-item">
-                    <span class="feature-icon">🔍</span>
-                    <div class="feature-content">
-                        <h4>Búsqueda Avanzada</h4>
-                        <p>Filtra por nombre, cédula, estado, fechas y más. Encuentra lo que necesitas al instante.</p>
+    <!-- Contenedor de animación -->
+    <div class="animation-container">
+        <div class="main-container">
+            <!-- Fase 1: M con estrella integrada -->
+            <div class="m-with-integrated-star">
+                <div class="m-container">
+                    <div class="letter-m-with-star">M</div>
+                    <div class="integrated-star">
+                        <svg class="star-svg" viewBox="0 0 24 24">
+                            <path d="M12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2Z"/>
+                        </svg>
+                        <div class="bling-flash"></div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Casos de Uso -->
-    <section class="use-cases">
-        <div class="container">
-            <h2 class="section-title">Ideal para:</h2>
-            <div class="use-cases-grid">
-                <div class="use-case-card">
-                    <h3 class="use-case-title">⚖️ Estudios Jurídicos</h3>
-                    <p class="use-case-description">Gestión completa de contratos y firmas válidas. Automatiza procesos legales y mantén todo organizado.</p>
-                </div>
-                <div class="use-case-card">
-                    <h3 class="use-case-title">🏠 Inmobiliarias</h3>
-                    <p class="use-case-description">Control total de arrendamientos y documentación. Nunca pierdas una renovación importante.</p>
-                </div>
-                <div class="use-case-card">
-                    <h3 class="use-case-title">🏢 Empresas de Servicios</h3>
-                    <p class="use-case-description">Renovaciones automáticas y recordatorios inteligentes. Mantén la continuidad de tus servicios.</p>
-                </div>
+            <!-- Fase 3: Letras restantes -->
+            <div class="remaining-letters">
+                <span class="party-letter">a</span>
+                <span class="party-letter">c</span>
+                <span class="party-letter">a</span>
+                <span class="party-letter">l</span>
+                <span class="party-letter">l</span>
+                <span class="party-letter">y</span>
             </div>
-        </div>
-    </section>
 
-    <!-- Testimonios -->
-    <section class="testimonials">
-        <div class="container">
-            <h2 class="section-title">Lo que dicen nuestros clientes</h2>
-            <div class="testimonial-card">
-                <p class="testimonial-quote">"El CRM redujo un 70% el tiempo de gestión de contratos en mi firma. Ahora puedo enfocarme en lo que realmente importa: mis clientes."</p>
-                <p class="testimonial-author">Juan Pérez</p>
-                <p class="testimonial-company">Estudio Legal XYZ</p>
-            </div>
-        </div>
-    </section>
+            <!-- Logo final - versión imagen -->
+            <img src="LogoMacally.png" alt="Macally Logo" class="final-logo">
 
-    <!-- CTA Final -->
-    <section class="final-cta">
-        <div class="container">
-            <h2 class="final-cta-title">¿Listo para simplificar tu gestión de clientes?</h2>
-            <div class="final-cta-buttons">
-                <a href="https://wa.me/593995883715?text=Hola%2C%20quisiera%20agendar%20una%20cita%20para%20realizar%20una%20prueba%20de%20sus%20servicios.%20%C2%BFPodr%C3%ADan%20brindarme%20m%C3%A1s%20informaci%C3%B3n%3F
-" class="btn btn-white">🎯 Comenzar Ahora</a>
-                <a href="https://wa.me/593995883715?text=Hola%2C%20quisiera%20agendar%20una%20cita%20para%20realizar%20una%20prueba%20de%20sus%20servicios.%20%C2%BFPodr%C3%ADan%20brindarme%20m%C3%A1s%20informaci%C3%B3n%3F
-" class="btn btn-secondary">💬 Hablar con un Asesor</a>
-            </div>
-        </div>
-    </section>
+            <!-- Efectos de confeti -->
+            <div class="confetti confetti-1"></div>
+            <div class="confetti confetti-2"></div>
+            <div class="confetti confetti-3"></div>
+            <div class="confetti confetti-4"></div>
+            <div class="confetti confetti-5"></div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Producto</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Funcionalidades</a></li>
-                        <li><a href="#">Precios</a></li>
-                        <li><a href="#">Integraciones</a></li>
-                        <li><a href="#">API</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Soporte</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Centro de Ayuda</a></li>
-                        <li><a href="#">Documentación</a></li>
-                        <li><a href="#">Contacto</a></li>
-                        <li><a href="#">Estado del Sistema</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Legal</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Políticas de Privacidad</a></li>
-                        <li><a href="#">Términos de Servicio</a></li>
-                        <li><a href="#">Certificaciones</a></li>
-                        <li><a href="#">Cumplimiento</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Síguenos</h4>
-                    <div class="social-icons">
-                        <a href="#" class="social-icon">📘</a>
-                        <a href="#" class="social-icon">🐦</a>
-                        <a href="#" class="social-icon">💼</a>
-                        <a href="#" class="social-icon">📧</a>
-                    </div>
-                </div>
-            </div>
-            <p>&copy; 2025 CRM Macally x CrivixLabs. Todos los derechos reservados.</p>
+            <!-- Líneas de energía -->
+            <div class="energy-line energy-line-1"></div>
+            <div class="energy-line energy-line-2"></div>
+            <div class="energy-line energy-line-3"></div>
         </div>
-    </footer>
+    </div>
+
+    <!-- Landing Page (oculto inicialmente) -->
+    <div class="landing-page">
+        <img src="LogoM.png" alt="Macally Logo" class="landing-logo">
+        <h1 class="landing-title">Transformando ideas en experiencias digitales</h1>
+        <p class="landing-subtitle">Somos una agencia creativa especializada en diseño y desarrollo web de alto impacto. Nuestro equipo de expertos combina innovación y tecnología para crear soluciones únicas.</p>
+        <button class="cta-button">Contactar ahora</button>
+    </div>
+
+    <button class="restart-btn" onclick="restartAnimation()">↻ Ver animación de nuevo</button>
 
     <script>
-        // Animaciones y efectos interactivos
-        document.addEventListener('DOMContentLoaded', function() {
-            // Efecto de aparición gradual al hacer scroll
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
-
-            // Observar elementos para animación
-            const animateElements = document.querySelectorAll('.benefit-card, .feature-item, .use-case-card');
-            animateElements.forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(30px)';
-                el.style.transition = 'all 0.6s ease';
-                observer.observe(el);
-            });
-
-            // Efectos de hover mejorados para botones
-            const buttons = document.querySelectorAll('.btn');
-            buttons.forEach(btn => {
-                btn.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-3px) scale(1.05)';
-                });
-                
-                btn.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0) scale(1)';
-                });
-            });
-
-            // Efecto de partículas en el header
-            createParticles();
-        });
-
-        function createParticles() {
-            const header = document.querySelector('header');
-            const particleCount = 50;
-
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.style.position = 'absolute';
-                particle.style.width = '2px';
-                particle.style.height = '2px';
-                particle.style.background = 'rgba(255,255,255,0.3)';
-                particle.style.borderRadius = '50%';
-                particle.style.pointerEvents = 'none';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.animation = `float ${3 + Math.random() * 4}s ease-in-out infinite`;
-                particle.style.animationDelay = Math.random() * 2 + 's';
-                header.appendChild(particle);
-            }
+        function restartAnimation() {
+            location.reload();
         }
+
+        // Transición a landing page
+        setTimeout(() => {
+            document.querySelector('.landing-page').classList.add('active');
+            document.body.style.background = '#ffffff';
+        }, 6500);
+
+        // Vibración sutil en momentos clave
+        setTimeout(() => { if (navigator.vibrate) navigator.vibrate(50); }, 300);
+        setTimeout(() => { if (navigator.vibrate) navigator.vibrate([30, 20, 30]); }, 800);
+        setTimeout(() => { if (navigator.vibrate) navigator.vibrate(40); }, 1500);
+        setTimeout(() => { if (navigator.vibrate) navigator.vibrate(40); }, 4500);
     </script>
 </body>
 </html>
